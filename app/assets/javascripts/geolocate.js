@@ -1,8 +1,10 @@
-function getGeoLocation() {
-  navigator.geolocation.getCurrentPosition(setGeoCookie);
+navvigator.geolocation.getCurrentPosition(locationSuccess, locationFail);
+function locationSuccess(position) {
+  latitude = position.coords.latitude;
+  longitude = position.coords.longitude;
+  alert('yes')
 }
 
-function setGeoCookie(position) {
-  var cookie_val = position.coords.latitude + "|" + position.coords.longitude;
-  document.cookie = "lat_lng=" + escape(cookie_val);
+function locationFail() {
+  alert(‘Oops, could not find you.’);
 }
