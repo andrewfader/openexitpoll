@@ -1,14 +1,15 @@
 source 'https://rubygems.org'
 
-gem 'rails'
-gem 'pg'
-gem 'uglifier'
-gem 'therubyracer', platforms: :ruby
-gem 'jquery-rails'
-gem 'turbolinks'
 gem 'bcrypt'
-gem 'puma'
 gem 'geokit-rails'
+gem 'haml'
+gem 'jquery-rails'
+gem 'pg'
+gem 'puma'
+gem 'rails'
+gem 'therubyracer', platforms: :ruby
+gem 'turbolinks'
+gem 'uglifier'
 
 group :development, :test do
   gem 'jazz_fingers', github: 'andrewfader/jazz_fingers'
