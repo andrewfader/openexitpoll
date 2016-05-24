@@ -10,6 +10,7 @@ gem 'rails'
 gem 'therubyracer', platforms: :ruby
 gem 'turbolinks'
 gem 'uglifier'
+gem 'gmaps-autocomplete-rails'
 
 group :development, :test do
   gem 'jazz_fingers', github: 'andrewfader/jazz_fingers'
