@@ -11,11 +11,13 @@ gem 'therubyracer', platforms: :ruby
 gem 'turbolinks'
 gem 'uglifier'
 gem 'gmaps-autocomplete-rails'
+gem 'capybara-webkit'
 
 group :development, :test do
-  gem 'jazz_fingers', github: 'andrewfader/jazz_fingers'
+  # gem 'jazz_fingers', github: 'andrewfader/jazz_fingers'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'byebug'
 end
 
 group :development do
