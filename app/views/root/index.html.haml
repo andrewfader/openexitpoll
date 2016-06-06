@@ -1,4 +1,6 @@
-Welcome to Open Exit Poll
+%h1 Open Exit Poll
 
-You are currently in #{@location}
-Your lat lng: #{@lat_lng}
+Welcome. Do you want to look for polling locations at #{@location}?
+
+%p= link_to "Yes", search_path(location: @location)
+%p= link_to "No, enter my address", enter_address_path
