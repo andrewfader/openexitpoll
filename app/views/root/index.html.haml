@@ -1,6 +1,8 @@
-%h1 Open Exit Poll
+.index
+  %h1 Open Exit Poll
 
-Welcome. Do you want to look for polling locations at #{@location}?
+  Welcome, please choose your address from the list below:
 
-%p= link_to "Yes", search_path(location: @location)
-%p= link_to "No, enter my address", enter_address_path
+  %p= link_to @address1, search_path(location: @address1)
+  %p= link_to @address2, search_path(location: @address2)
+  %p= link_to "None, enter my address", enter_address_path
