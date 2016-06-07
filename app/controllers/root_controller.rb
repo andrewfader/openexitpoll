@@ -12,6 +12,7 @@ class RootController < ApplicationController
         @address1 = geocode.all.last.formatted_address
         @address2 = geocode.formatted_address
         @state = geocode.state
+        cookies[:state] = @state
       end
     end
   end
@@ -27,7 +28,7 @@ class RootController < ApplicationController
         cookies[:user_id] = @user.id
       else
         @user = User.create(hashed_ip: OpenSSL::Digest::SHA512.new.hexdigest(request.ip),
-                            hashed_address: OpenSSL::Digest::SHA512.new.hexdigest(params[:location]))
+                            hashed_address: OpenSSL::Digest::SHA512.new.hexdigest(params[:location]), state: cookies[:state])
         cookies[:user_id] = @user.id
       end
     else
@@ -36,6 +37,19 @@ class RootController < ApplicationController
   end
 
   def enter_address
+    if params[:address]
+      @lat_lng = cookies[:lat_lng] && cookies[:lat_lng].split("|")
+      if @lat_lng.present?
+        geocode = MultiGeocoder.geocode(@lat_lng.join(" "))
+        distance = geocode.distance_from(params[:address])
+        if distance > 100
+          flash[:notice] = "Address entered was more than 100 miles from current location."
+          render :enter_address
+        else
+          redirect_to search_path(location: MultiGeocoder.geocode(params[:address]).formatted_address)
+        end
+      end
+    end
   end
 
   def vote

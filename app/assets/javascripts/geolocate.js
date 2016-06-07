@@ -19,17 +19,23 @@ $(function() {
         $('#submit-address-button').click();
         window.setTimeout(function() {
           $('body').html($('#location').html())
+          address = $($('.address')[1]).text().replace(/(\r\n|\n|\r)/gm,"").replace(/\s+/g,' ').trim();
+          if (address) {
           $('body').html('<div>Did you vote at <p>' +
                          $('body').html()+
                          '?</div>' +
                          '<p><a href="/vote?address=' +
-                         $($('.address')[1]).text().replace(/(\r\n|\n|\r)/gm,"").replace(/\s+/g,' ').trim() +
-                         '">Yes</a><br><a href=/>No</a></p>')
+                          + address +
+                         '">Yes</a><br><a href="/">No</a></p>')
           $('#_vitModal').remove();
           $('#_vit').remove();
           $('#polling-location-info-close').remove();
           $('.polling-location-info').remove();
           $('img').remove();
+          } else {
+            alert("Not found")
+            window.location = '/';
+          }
         },600);
       }
     }

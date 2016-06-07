@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get :search, to: 'root#search'
   get :vote, to: 'root#vote'
   get :enter_address, to: 'root#enter_address'
+  post :enter_address, to: 'root#enter_address'
   get :about, to: 'root#about'
   get :record_vote, to: 'root#record_vote'
 end
