@@ -18,3 +18,4 @@
 config/database.yml
 vendor/bundle
 .byebug_history
+public/.well-known
