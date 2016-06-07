@@ -53,14 +53,14 @@ class RootController < ApplicationController
   end
 
   def vote
-    @user = User.find(cookies[:user_id]) || User.find_by(hashed_ip: BCrypt::Password.create(request.ip))
+    @user = User.find(cookies[:user_id]) || User.find_by(hashed_ip: OpenSSL::Digest::SHA512.new.hexdigest(request.ip))
     if @user && !@user.vote
       @user.update_attributes(polling_location: params[:address])
     end
   end
 
   def record_vote
-    @user = User.find(cookies[:user_id]) || User.find_by(hashed_ip: BCrypt::Password.create(request.ip))
+    @user = User.find(cookies[:user_id]) || User.find_by(hashed_ip: OpenSSL::Digest::SHA512.new.hexdigest(request.ip))
     unless @user.vote
       @user.update_attributes(vote: params[:vote])
     else
