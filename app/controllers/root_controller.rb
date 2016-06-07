@@ -11,6 +11,7 @@ class RootController < ApplicationController
         geocode = MultiGeocoder.geocode(@lat_lng.join(" "))
         @address1 = geocode.all.last.formatted_address
         @address2 = geocode.formatted_address
+        @state = geocode.state
       end
     end
   end
@@ -38,6 +39,10 @@ class RootController < ApplicationController
   end
 
   def vote
+    @user = User.find(cookies[:user_id]) || User.find_by(hashed_ip: BCrypt::Password.create(request.ip))
+    if @user && !@user.vote
+      @user.update_attributes(polling_location: params[:address])
+    end
   end
 
   def record_vote

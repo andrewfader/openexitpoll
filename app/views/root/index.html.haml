@@ -1,13 +1,14 @@
 .index
   %h1 Open Exit Poll
 
-  - unless @user.vote
-    Welcome, please choose your address from the list below:
+  - unless @user && @user.vote
+    - if @state == "CA" || @state == "NJ" || @state == "MT" || @state == "ND" || @state == "SD" || @state == "NM" || @state == "DC"
+      Welcome, please choose your address from the list below:
 
-    %p= link_to @address1, search_path(location: @address1)
-    %p= link_to @address2, search_path(location: @address2)
-    %p= link_to "None, enter my address", enter_address_path
-    %p= link_to "I voted by mail", vote_path
+      %p= link_to @address1, search_path(location: @address1)
+      %p= link_to @address2, search_path(location: @address2)
+      %p= link_to "None, enter my address", enter_address_path
+      %p= link_to "I voted by mail", vote_path
   - else
     A user with the ip #{request.ip} has already voted. This IP was stored as a non-identifiable cryptographic hash in the Open Exit Poll database at #{@user.created_at}.
   %p= link_to "About", about_path

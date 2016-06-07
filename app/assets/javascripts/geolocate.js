@@ -30,7 +30,7 @@ $(function() {
           $('#polling-location-info-close').remove();
           $('.polling-location-info').remove();
           $('img').remove();
-        },300);
+        },600);
       }
     }
 
