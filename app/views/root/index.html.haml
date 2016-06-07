@@ -1,7 +1,7 @@
 .index
   %h1 Open Exit Poll
 
-  - unless @user
+  - unless @user.vote
     Welcome, please choose your address from the list below:
 
     %p= link_to @address1, search_path(location: @address1)
