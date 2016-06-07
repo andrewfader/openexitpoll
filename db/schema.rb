@@ -17,10 +17,13 @@ ActiveRecord::Schema.define(version: 20160607042455) do
   enable_extension "plpgsql"
 
   create_table "users", force: :cascade do |t|
-    t.json   "questions"
-    t.string "hashed_ip"
-    t.string "hashed_address"
-    t.string "vote"
+    t.json     "questions"
+    t.string   "hashed_ip"
+    t.string   "hashed_address"
+    t.string   "vote"
+    t.string   "polling_location"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

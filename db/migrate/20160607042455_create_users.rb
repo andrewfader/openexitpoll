@@ -5,6 +5,8 @@ class CreateUsers < ActiveRecord::Migration
       t.string :hashed_ip
       t.string :hashed_address
       t.string :vote
+      t.string :polling_location
+      t.timestamps
     end
   end
 end
