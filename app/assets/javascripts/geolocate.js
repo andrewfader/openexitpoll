@@ -12,6 +12,7 @@ $(function() {
   }
   if($('.search').length > 0) {
     function prepareSearch() {
+      var address;
       if ($('#_vit').length == 1) {
         $('#app-info').remove()
         $('.footer').remove()
@@ -25,7 +26,7 @@ $(function() {
                            $('body').html()+
                            '?</div>' +
                            '<p><a href="/vote?address=' +
-                           + address +
+                           address +
                            '">Yes</a><br><a href="/">No</a></p>')
             $('#_vitModal').remove();
             $('#_vit').remove();
