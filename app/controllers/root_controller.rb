@@ -5,7 +5,7 @@ class RootController < ApplicationController
 
   def index
     @user = User.find_by(hashed_ip: OpenSSL::Digest::SHA512.new.hexdigest(request.ip))
-    unless @user
+    unless @user && @user.vote
       @lat_lng = cookies[:lat_lng] && cookies[:lat_lng].split("|")
       if @lat_lng.present?
         geocode = MultiGeocoder.geocode(@lat_lng.join(" "))
